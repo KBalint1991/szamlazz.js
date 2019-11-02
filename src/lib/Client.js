@@ -31,11 +31,13 @@ class Client {
       'Valid ApiKey field missing form client options')
     }
 
+    if(this._options.user !== undefined && this._options.password !== undefined) {
     assert(typeof this._options.user === 'string' && this._options.user.trim().length > 1,
       'Valid User field missing form client options')
 
     assert(typeof this._options.password === 'string' && this._options.password.trim().length > 1,
       'Valid Password field missing form client options')
+    }
 
     this._cookieJar = request.jar()
   }
