@@ -6,6 +6,7 @@ exports.createClient = function (Szamlazz) {
   return new Szamlazz.Client({
     user: 'USERNAME',
     password: 'PASSWORD',
+    apiKey: 'testApiKey1234',
     eInvoice: false,
     passpharase: '',
     requestInvoiceDownload: true,

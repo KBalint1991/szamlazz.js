@@ -26,6 +26,11 @@ class Client {
   constructor (options) {
     this._options = merge(defaultOptions, options || {})
 
+    if(this._options.apiKey !== undefined) {
+    assert(typeof this._options.apiKey === 'string' && this._options.apiKey.trim().length > 1,
+      'Valid ApiKey field missing form client options')
+    }
+
     assert(typeof this._options.user === 'string' && this._options.user.trim().length > 1,
       'Valid User field missing form client options')
 
@@ -46,6 +51,7 @@ class Client {
       XMLUtils.wrapWithElement([
         [ 'felhasznalo', this._options.user ],
         [ 'jelszo', this._options.password ],
+        [ 'szamlaagentkulcs', this._options.apiKey ],
         [ 'szamlaszam', options.invoiceId ],
         [ 'rendelesSzam', options.orderNumber ],
         [ 'pdf', options.pdf ]
@@ -76,6 +82,7 @@ class Client {
         'beallitasok', [
           [ 'felhasznalo', this._options.user ],
           [ 'jelszo', this._options.password ],
+          [ 'szamlaagentkulcs', this._options.apiKey ],
           [ 'eszamla', String(options.eInvoice) ],
           [ 'szamlaLetoltes', String(options.requestInvoiceDownload) ],
       ]) +
@@ -120,6 +127,7 @@ class Client {
       XMLUtils.wrapWithElement('beallitasok', [
         [ 'felhasznalo', this._options.user ],
         [ 'jelszo', this._options.password ],
+        [ 'szamlaagentkulcs', this._options.apiKey ],
         [ 'eszamla', this._options.eInvoice ],
         [ 'kulcstartojelszo', this._options.passpharase ],
         [ 'szamlaLetoltes', this._options.requestInvoiceDownload ],

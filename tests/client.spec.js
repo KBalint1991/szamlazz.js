@@ -65,6 +65,11 @@ describe('Client', function () {
       expect(client._options).to.have.property('password').that.is.a('string')
       done()
     })
+
+    it('should set apiKey', function (done) {
+      expect(client._options).to.have.property('apiKey').that.is.a('string')
+      done()
+    })
   })
 
   describe('_generateInvoiceXML', function () {
